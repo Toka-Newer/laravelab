@@ -24,6 +24,9 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{ route('posts') }}">All Posts</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ route('users.show') }}">All Users</a>
+                        </li>
                     </ul>
                 </div>
             </div>

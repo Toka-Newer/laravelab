@@ -22,7 +22,6 @@ Route::get('/', function () {
 // posts
 Route::get('/posts', [postController::class, 'getPosts'])->name('posts');
 Route::get('/viewPost/{id}', [postController::class, 'getPost'])->name('viewPost');
-
 Route::get('/createPost', [postController::class, 'createPost'])->name('createPost');
 Route::post('/insertPost', [postController::class, 'insert'])->name('insertPost');
 Route::get('/editPost/{id}', [postController::class, 'edit'])->name('editPost');

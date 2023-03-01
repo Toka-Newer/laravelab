@@ -42,7 +42,13 @@
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword2" class="form-label">Post Creator</label>
-            <input type="text" class="form-control" id="exampleInputPassword2" name="postCreator" value="{{$posts->user->name}}" disabled>
+            {{-- <input type="text" class="form-control" id="exampleInputPassword2" name="postCreator" value="{{$posts->user->name}}" disabled> --}}
+            <select class="form-select" aria-label="Default select example" name="user_id">
+                <option value="{{ $posts->user_id }}" selected>{{$posts->user->name}}</option>
+                @foreach ($users as $user)
+                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                @endforeach
+            </select>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

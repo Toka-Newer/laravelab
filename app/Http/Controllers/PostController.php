@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Post;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class postController extends Controller
@@ -19,22 +19,24 @@ class postController extends Controller
     }
 
     function createPost(){
-        return view('insertPost');
+        $users = User::get();
+        return view('insertPost', compact('users'));
     }
 
     function insert(Request $request){
         $validated = $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'postCreator' => 'required',
+            'user_id' => 'required',
         ]);
-        Post::create($request->except('_method','_token'));
+        Post::create($request->all());
         return redirect()->route('posts');
     }
 
     function edit($id){
         $posts = post::find($id);
-        return view('editPost', compact('posts'));
+        $users = User::get();
+        return view('editPost', compact('posts','users'));
     }
 
     function update($id, Request $request){
