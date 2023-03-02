@@ -27,6 +27,11 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{ route('users.show') }}">All Users</a>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link active" aria-current="page" href="#">
+                            {{ Auth::user()->name }}
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -42,16 +47,15 @@
             <label for="exampleInputPassword1" class="form-label">Description</label>
             <input type="text" class="form-control" id="exampleInputPassword1" name="description">
         </div>
-        <div class="mb-3">
+        {{-- <div class="mb-3">
             <label for="exampleInputPassword2" class="form-label">Post Creator</label>
-            {{-- <input type="text" class="form-control" id="exampleInputPassword2" name="postCreator"> --}}
             <select class="form-select" aria-label="Default select example" name="user_id">
                 <option selected>Open this select menu</option>
                 @foreach ($users as $user)
                     <option value="{{ $user->id }}">{{ $user->name }}</option>
                 @endforeach
             </select>
-        </div>
+        </div> --}}
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>

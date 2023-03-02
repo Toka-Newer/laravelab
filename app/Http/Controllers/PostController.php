@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class postController extends Controller
 {
     //
     function getPosts(){
-        $posts = Post::get();
+        $posts = Post::with('user')->paginate();
         return view('posts', ['posts' => $posts]);
     }
 
@@ -19,17 +20,21 @@ class postController extends Controller
     }
 
     function createPost(){
-        $users = User::get();
-        return view('insertPost', compact('users'));
+        // $users = User::get();
+        return view('insertPost');
     }
 
     function insert(Request $request){
         $validated = $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'user_id' => 'required',
         ]);
-        Post::create($request->all());
+        $id = Auth()->id();
+        Post::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'user_id' => $id,
+        ]);
         return redirect()->route('posts');
     }
 

@@ -27,6 +27,11 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{ route('users.show') }}">All Users</a>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link active" aria-current="page" href="#">
+                            {{ Auth::user()->name }}
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
